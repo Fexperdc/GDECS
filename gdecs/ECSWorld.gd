@@ -11,11 +11,16 @@ var entities: Dictionary = {}
 var systems: Array = []
 var gath_components: Array = []
 
-func _init():
-	connect("entity_created", self, "entity_created")
-	connect("entity_removed", self, "entity_removed")
-	connect("component_added", self, "_component_added")
+#func _init():
+#	connect("entity_created", self, "entity_created")
 #	connect("entity_removed", self, "entity_removed")
+#	connect("component_added", self, "_component_added")
+#	connect("entity_removed", self, "entity_removed")
+
+func create():
+	connect("entity_created", self, "_entity_created")
+	connect("entity_removed", self, "_entity_removed")
+	connect("component_added", self, "_component_added")
 
 func execute(delta: float):
 	_execute_systems(delta)
