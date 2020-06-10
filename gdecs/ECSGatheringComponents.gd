@@ -1,5 +1,7 @@
 class_name ECSGatheringComponents
 
+signal success(e)
+
 var _world
 
 var _family
@@ -13,6 +15,7 @@ func _init(world, family):
 
 func check_entity(entity_id: int):
 	if _family.matches(entity_id):
+		emit_signal("success", entity_id)
 		for c in _world.get_components(entity_id):
 			components[c].append(_world.get_component(entity_id, c))
 	else:

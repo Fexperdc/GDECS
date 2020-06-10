@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "ECSWorld",
 "language": "GDScript",
 "path": "res://gdecs/ECSWorld.gd"
+}, {
+"base": "Node2D",
+"class": "Main",
+"language": "GDScript",
+"path": "res://Main.gd"
 } ]
 _global_script_class_icons={
 "ECSComponent": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "ECSGathering": "",
 "ECSGatheringComponents": "",
 "ECSSystem": "",
-"ECSWorld": ""
+"ECSWorld": "",
+"Main": ""
 }
 
 [application]
