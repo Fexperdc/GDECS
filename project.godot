@@ -8,14 +8,38 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "ECSComponent",
+"language": "GDScript",
+"path": "res://gdecs/ECSComponent.gd"
+}, {
+"base": "Reference",
+"class": "ECSFamily",
+"language": "GDScript",
+"path": "res://gdecs/ECSFamily.gd"
+}, {
+"base": "Reference",
+"class": "ECSSystem",
+"language": "GDScript",
+"path": "res://gdecs/ECSSystem.gd"
+}, {
+"base": "Reference",
+"class": "ECSWorld",
+"language": "GDScript",
+"path": "res://gdecs/ECSWorld.gd"
+} ]
 _global_script_class_icons={
-
+"ECSComponent": "",
+"ECSFamily": "",
+"ECSSystem": "",
+"ECSWorld": ""
 }
 
 [application]
 
 config/name="GDECS"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [rendering]
