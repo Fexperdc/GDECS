@@ -1,12 +1,12 @@
 class_name ECSFamily
 
-var _world: ECSWorld
+var _world
 
 var _dict: Dictionary = {
 	"include": []
 }
 
-func _init(world: ECSWorld):
+func _init(world):
 	self._world = world
 
 func include(c_class):

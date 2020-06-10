@@ -20,6 +20,16 @@ _global_script_classes=[ {
 "path": "res://gdecs/ECSFamily.gd"
 }, {
 "base": "Reference",
+"class": "ECSGathering",
+"language": "GDScript",
+"path": "res://gdecs/ECSGathering.gd"
+}, {
+"base": "Reference",
+"class": "ECSGatheringComponents",
+"language": "GDScript",
+"path": "res://gdecs/ECSGatheringComponents.gd"
+}, {
+"base": "Reference",
 "class": "ECSSystem",
 "language": "GDScript",
 "path": "res://gdecs/ECSSystem.gd"
@@ -32,6 +42,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ECSComponent": "",
 "ECSFamily": "",
+"ECSGathering": "",
+"ECSGatheringComponents": "",
 "ECSSystem": "",
 "ECSWorld": ""
 }
@@ -41,6 +53,10 @@ _global_script_class_icons={
 config/name="GDECS"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/vsync/use_vsync=false
 
 [rendering]
 
