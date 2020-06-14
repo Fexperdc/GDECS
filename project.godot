@@ -10,6 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Bag",
+"language": "GDScript",
+"path": "res://gdecs/Bag.gd"
+}, {
+"base": "Reference",
+"class": "ComponentPuller",
+"language": "GDScript",
+"path": "res://gdecs/ComponentPuller.gd"
+}, {
+"base": "Reference",
+"class": "ComponentType",
+"language": "GDScript",
+"path": "res://gdecs/ComponentType.gd"
+}, {
+"base": "Reference",
 "class": "ECSComponent",
 "language": "GDScript",
 "path": "res://gdecs/ECSComponent.gd"
@@ -23,11 +38,6 @@ _global_script_classes=[ {
 "class": "ECSGathering",
 "language": "GDScript",
 "path": "res://gdecs/ECSGathering.gd"
-}, {
-"base": "Reference",
-"class": "ECSGatheringComponents",
-"language": "GDScript",
-"path": "res://gdecs/ECSGatheringComponents.gd"
 }, {
 "base": "Reference",
 "class": "ECSSystem",
@@ -45,10 +55,12 @@ _global_script_classes=[ {
 "path": "res://Main.gd"
 } ]
 _global_script_class_icons={
+"Bag": "",
+"ComponentPuller": "",
+"ComponentType": "",
 "ECSComponent": "",
 "ECSFamily": "",
 "ECSGathering": "",
-"ECSGatheringComponents": "",
 "ECSSystem": "",
 "ECSWorld": "",
 "Main": ""

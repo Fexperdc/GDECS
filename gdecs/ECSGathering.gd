@@ -1,13 +1,18 @@
 class_name ECSGathering
 
-var _family: ECSFamily
+var world
+var family: ECSFamily
+var entities: Array = []
 
-func _init(family: ECSFamily):
-	self._family = family
+func _init(world, family: ECSFamily):
+	self.world = world
+	self.family = family
 
 func check_entity(entity_id: int):
-	if _family.matches(entity_id):
-		pass
+	if family.matches(entity_id) && !entities.has(entity_id):
+		entities.append(entity_id)
+	else:
+		remove_entity(entity_id)
 
 func remove_entity(entity_id: int):
-	pass
+	entities.erase(entity_id)
