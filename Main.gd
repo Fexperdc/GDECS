@@ -33,8 +33,6 @@ func _physics_process(delta):
 	$FPS.text = str(Engine.get_frames_per_second())
 	$Count.text = str(world.entities.size())
 
-var count: int = 0
-
 func _on_Timer_timeout():
 	var entity: ECSEntity = world.create_entity()
 	var sprite: Sprite = Sprite.new()
@@ -70,5 +68,5 @@ class MovementSystem:
 	
 	func execute(delta):
 		.execute(delta)
-		for e in gath.entities:
-			sc_p.get_component(e).sprite.position += Vector2(1, 1)
+		for e in range(gath.entities.size()):
+			gath.components[SpriteComponent][e].sprite.global_position += Vector2(1, 1)
