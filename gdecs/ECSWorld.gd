@@ -60,6 +60,16 @@ func has_components(entity: ECSEntity, c_classes: Array) -> bool:
 	
 	return result
 
+func has_one_component_of(entity: ECSEntity, c_classes: Array) -> bool:
+	var result: bool = false
+	
+	for i in range(c_classes.size()):
+		if has_component(entity, c_classes[i]):
+			result = true
+			break
+	
+	return result
+
 func remove_entity(entity: ECSEntity):
 	emit_signal("entity_removed", entity)
 	entities.erase(entity)
