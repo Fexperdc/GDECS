@@ -5,12 +5,11 @@ signal entity_removed(e)
 signal component_added(e, c)
 signal component_removed(e, c)
 
-var _current_id: int = -1
 var _current_c_index: int = -1
 	#	entities {
 	#		entity_id : Bag(components)
 	#	}
-var entities: Dictionary = {}
+var entities: Array = []
 var systems: Array = []
 var gatherings: Array = []
 
@@ -30,36 +29,30 @@ func _execute_systems(delta: float):
 	for s in systems:
 		s.execute(delta)
 
-func create_entity() -> int:
-	_current_id += 1
+func create_entity() -> ECSEntity:
+	var entity: ECSEntity = ECSEntity.new()
+	entities.append(entity)
+	emit_signal("entity_created", entity)
 	
-	var _id: int = _current_id
-	entities[_id] = Bag.new(16)
-	
-	emit_signal("entity_created", _id)
-	
-	return _id
+	return entity
 
 func create_component(c_class):
 	return c_class.new()
 
-func add_component(entity_id: int, c) -> void:
-	entities[entity_id].set_o(component_type.get_index_for(c.get_script()), c)
-	emit_signal("component_added", entity_id, c)
+func add_component(entity: ECSEntity, c) -> void:
+	entity.components.set_o(component_type.get_index_for(c.get_script()), c)
+	emit_signal("component_added", entity, c)
 
-func get_component(entity_id: int, c_class):
-	return entities[entity_id].get_o(component_type.get_index_for(c_class))
+func get_component(entity: ECSEntity, c_class):
+	return entity.components.get_o(component_type.get_index_for(c_class))
 
-func get_components(entity_id: int) -> Bag:
-	return entities[entity_id]
-
-func has_component(entity_id: int, c_class) -> bool:
-	return entities[entity_id].get_o(component_type.get_index_for(c_class)) != null
+func has_component(entity: ECSEntity, c_class) -> bool:
+	return entity.components.get_o(component_type.get_index_for(c_class)) != null
 	
-func has_components(entity_id: int, c_classes: Array) -> bool:
+func has_components(entity: ECSEntity, c_classes: Array) -> bool:
 	var result: bool = false
 	for i in range(c_classes.size()):
-		if has_component(entity_id, c_classes[i]):
+		if has_component(entity, c_classes[i]):
 			result = true
 		else:
 			result = false
@@ -67,9 +60,9 @@ func has_components(entity_id: int, c_classes: Array) -> bool:
 	
 	return result
 
-func remove_entity(entity_id: int):
-	emit_signal("entity_removed", entity_id)
-	entities.erase(entity_id)
+func remove_entity(entity: ECSEntity):
+	emit_signal("entity_removed", entity)
+	entities.erase(entity)
 
 func add_system(system):
 	systems.append(system)
@@ -79,24 +72,24 @@ func create_gathering(family: ECSFamily) -> ECSGathering:
 	gatherings.append(g)
 	return g
 
-func _check_gatherings(entity_id: int):
+func _check_gatherings(entity: ECSEntity):
 	for g in gatherings:
-		g.check_entity(entity_id)
+		g.check_entity(entity)
 
-func _remove_from_gatherings(entity_id: int):
+func _remove_from_gatherings(entity: ECSEntity):
 	for g in gatherings:
-		g.remove_entity(entity_id)
+		g.remove_entity(entity)
 
 ##################FOR SIGNALS############################
 
-func _entity_created(e: int):
+func _entity_created(e: ECSEntity):
 	_check_gatherings(e)
 	
-func _entity_removed(e: int):
+func _entity_removed(e: ECSEntity):
 	_remove_from_gatherings(e)
 	
-func _component_added(e: int, c):
+func _component_added(e: ECSEntity, c):
 	_check_gatherings(e)
 
-func _component_removed(e: int, c):
+func _component_removed(e: ECSEntity, c):
 	_check_gatherings(e)

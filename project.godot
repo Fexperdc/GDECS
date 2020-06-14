@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://gdecs/ECSComponent.gd"
 }, {
 "base": "Reference",
+"class": "ECSEntity",
+"language": "GDScript",
+"path": "res://gdecs/ECSEntity.gd"
+}, {
+"base": "Reference",
 "class": "ECSFamily",
 "language": "GDScript",
 "path": "res://gdecs/ECSFamily.gd"
@@ -59,6 +64,7 @@ _global_script_class_icons={
 "ComponentPuller": "",
 "ComponentType": "",
 "ECSComponent": "",
+"ECSEntity": "",
 "ECSFamily": "",
 "ECSGathering": "",
 "ECSSystem": "",

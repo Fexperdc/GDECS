@@ -14,6 +14,6 @@ func include(c_class) -> ECSFamily:
 	
 	return self
 
-func matches(entity_id: int) -> bool:
-	var result: bool = _world.has_components(entity_id, _dict["include"])
+func matches(entity: ECSEntity) -> bool:
+	var result: bool = _world.has_components(entity, _dict["include"])
 	return result

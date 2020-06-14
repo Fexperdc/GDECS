@@ -36,7 +36,7 @@ func _physics_process(delta):
 var count: int = 0
 
 func _on_Timer_timeout():
-	var entity: int = world.create_entity()
+	var entity: ECSEntity = world.create_entity()
 	var sprite: Sprite = Sprite.new()
 	sprite.texture = texture
 	add_child(sprite)
@@ -71,4 +71,4 @@ class MovementSystem:
 	func execute(delta):
 		.execute(delta)
 		for e in gath.entities:
-			sc_p.get_component(e).sprite.global_position += Vector2(1, 1)
+			sc_p.get_component(e).sprite.position += Vector2(1, 1)
