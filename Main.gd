@@ -9,6 +9,8 @@ var texture = preload("res://icon.png")
 func _ready():
 	world.create()
 	world.add_system(MovementSystem.new(world))
+	
+	
 #	for i in range(5):
 #		var entity: int = world.create_entity()
 #		var sprite: Sprite = Sprite.new()
@@ -32,6 +34,13 @@ func _physics_process(delta):
 
 	$FPS.text = str(Engine.get_frames_per_second())
 	$Count.text = str(world.entities.size())
+	
+
+func _input(event):
+	if event.is_action_pressed("ui_down"):
+		print(world.entities[0].components._arr)
+		world.remove_component(world.entities[0], SpriteComponent)
+		print(world.entities[0].components._arr)
 
 func _on_Timer_timeout():
 	var entity: ECSEntity = world.create_entity()
@@ -42,6 +51,9 @@ func _on_Timer_timeout():
 	var sc: SpriteComponent = world.create_component(SpriteComponent)
 	sc.sprite = sprite
 	world.add_component(entity, sc)
+	
+	print(world.systems[0].gath.family.matches(entity))
+	
 
 class SpriteComponent:
 	extends ECSComponent

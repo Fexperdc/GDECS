@@ -19,6 +19,7 @@ func create():
 	connect("entity_created", self, "_entity_created")
 	connect("entity_removed", self, "_entity_removed")
 	connect("component_added", self, "_component_added")
+	connect("component_removed", self, "_component_removed")
 	
 	component_type = ComponentType.new(self)
 
@@ -41,7 +42,13 @@ func create_component(c_class):
 
 func add_component(entity: ECSEntity, c) -> void:
 	entity.components.set_o(component_type.get_index_for(c.get_script()), c)
+	c.entity = entity
 	emit_signal("component_added", entity, c)
+
+func remove_component(entity: ECSEntity, c_class) -> void:
+	var c = entity.components.get_o(component_type.get_index_for(c_class))
+	entity.components.remove(component_type.get_index_for(c_class))
+	emit_signal("component_removed", entity, c)
 
 func get_component(entity: ECSEntity, c_class):
 	return entity.components.get_o(component_type.get_index_for(c_class))
@@ -103,3 +110,4 @@ func _component_added(e: ECSEntity, c):
 
 func _component_removed(e: ECSEntity, c):
 	_check_gatherings(e)
+	print("EMITIING")
